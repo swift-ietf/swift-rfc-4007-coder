@@ -14,7 +14,11 @@ let package = Package(
         .library(
             name: "RFC 4007 Coder",
             targets: ["RFC 4007 Coder"]
-        )
+        ),
+        .library(
+            name: "RFC 4007 Coder Foundation Integration",
+            targets: ["RFC 4007 Coder Foundation Integration"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-atoms/swift-ascii.git", branch: "main"),
@@ -34,7 +38,9 @@ let package = Package(
         ),
         .package(url: "https://github.com/swift-ietf/swift-rfc-4007.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-rfc-4291.git", branch: "main"),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-4291-coder.git", branch: "main"),
         .package(url: "https://github.com/swift-ietf/swift-rfc-5952.git", branch: "main"),
+        .package(url: "https://github.com/swift-ietf/swift-rfc-5952-coder.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -52,7 +58,9 @@ let package = Package(
                 .product(name: "Parser", package: "swift-parser"),
                 .product(name: "RFC 4007", package: "swift-rfc-4007"),
                 .product(name: "RFC 4291", package: "swift-rfc-4291"),
+                .product(name: "RFC 4291 Coder", package: "swift-rfc-4291-coder"),
                 .product(name: "RFC 5952", package: "swift-rfc-5952"),
+                .product(name: "RFC 5952 Coder", package: "swift-rfc-5952-coder"),
                 .product(name: "Serializer", package: "swift-serializer"),
             ]
         ),
@@ -71,7 +79,31 @@ let package = Package(
                 .product(name: "Parser", package: "swift-parser"),
                 .product(name: "RFC 4007", package: "swift-rfc-4007"),
                 .product(name: "RFC 4291", package: "swift-rfc-4291"),
+                .product(name: "RFC 4291 Coder", package: "swift-rfc-4291-coder"),
+                .product(name: "RFC 5952 Coder", package: "swift-rfc-5952-coder"),
                 .product(name: "Serializer", package: "swift-serializer"),
+            ]
+        ),
+        .target(
+            name: "RFC 4007 Coder Foundation Integration",
+            dependencies: [
+                "RFC 4007 Coder",
+                .product(name: "ASCII", package: "swift-ascii"),
+                .product(name: "Byte", package: "swift-byte"),
+                .product(name: "Parseable ASCII", package: "swift-ascii-parser"),
+                .product(name: "RFC 4007", package: "swift-rfc-4007"),
+                .product(name: "RFC 4291", package: "swift-rfc-4291"),
+                .product(name: "RFC 4291 Coder", package: "swift-rfc-4291-coder"),
+                .product(name: "RFC 5952 Coder", package: "swift-rfc-5952-coder"),
+                .product(name: "Serializer", package: "swift-serializer"),
+            ]
+        ),
+        .testTarget(
+            name: "RFC 4007 Coder Foundation Integration Tests",
+            dependencies: [
+                "RFC 4007 Coder Foundation Integration",
+                .product(name: "RFC 4007", package: "swift-rfc-4007"),
+                .product(name: "RFC 4291", package: "swift-rfc-4291"),
             ]
         ),
     ],

@@ -6,7 +6,9 @@ public import Byte_Standard_Library_Integration
 public import Parseable_ASCII
 public import RFC_4007
 public import RFC_4291
+public import RFC_4291_Coder
 public import RFC_5952
+public import RFC_5952_Coder
 
 extension RFC_4007.IPv6.ScopedAddress: @retroactive ASCII.Parseable {
 
@@ -46,7 +48,9 @@ extension RFC_4007.IPv6.ScopedAddress: @retroactive ASCII.Serializable, @retroac
         _ scopedAddress: Self,
         into buffer: inout Buffer
     ) where Buffer.Element == ASCII.Code {
-        RFC_4291.IPv6.Address.serialize(scopedAddress.address, into: &buffer)
+        var address: [ASCII.Code] = []
+        RFC_4291.IPv6.Address.Text.Canonical().serialize(scopedAddress.address, into: &address)
+        buffer.append(contentsOf: address)
         if let zone = scopedAddress.zone {
             buffer.append(ASCII.Code.percentSign)
             for byte in zone.utf8 { buffer.append(ASCII.Code(byte)) }
