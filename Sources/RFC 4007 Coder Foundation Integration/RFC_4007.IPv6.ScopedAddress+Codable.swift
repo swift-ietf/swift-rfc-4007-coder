@@ -2,13 +2,12 @@ public import RFC_4007
 
 import ASCII
 import Byte
-import Parseable_ASCII
 import RFC_4291
 import RFC_4291_Coder
 import RFC_5952_Coder
 import Serializer
 
-extension RFC_4007.IPv6.ScopedAddress: Encodable, Decodable {
+extension RFC_4007.IPv6.ScopedAddress: @retroactive Encodable, @retroactive Decodable {
 
     private enum CodingKeys: String, CodingKey {
         case address

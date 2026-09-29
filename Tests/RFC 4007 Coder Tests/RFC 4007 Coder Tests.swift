@@ -1,9 +1,7 @@
-import ASCII_Serializer
+import ASCII
 import Byte
-import Byte_Standard_Library_Integration
 import Coder
-import Coder_Standard_Library_Integration
-import Cursor_Standard_Library_Integration
+import Cursor
 import Parser
 import RFC_4007
 import RFC_4007_Coder

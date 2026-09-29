@@ -1,14 +1,12 @@
 public import ASCII
-public import ASCII_Serializer
-public import Binary_Serializable
+public import Binary
 public import Byte
-public import Byte_Standard_Library_Integration
-public import Parseable_ASCII
+import Byte
 public import RFC_4007
-public import RFC_4291
-public import RFC_4291_Coder
-public import RFC_5952
-public import RFC_5952_Coder
+import RFC_4291
+import RFC_4291_Coder
+import RFC_5952
+import RFC_5952_Coder
 
 extension RFC_4007.IPv6.ScopedAddress: @retroactive ASCII.Parseable {
 

@@ -1,9 +1,8 @@
 public import Byte
 public import Coder
 public import Cursor
-public import Cursor_Standard_Library_Integration
 public import RFC_4007
-import ASCII_Serializer
+import ASCII
 import Parser
 import Serializer
 

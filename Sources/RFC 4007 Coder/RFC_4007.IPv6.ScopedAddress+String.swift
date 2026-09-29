@@ -1,5 +1,5 @@
-public import ASCII_Serializer
-public import Byte
+import ASCII
+import Byte
 public import RFC_4007
 
 extension RFC_4007.IPv6.ScopedAddress: @retroactive CustomStringConvertible {
