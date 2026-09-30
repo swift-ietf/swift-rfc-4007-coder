@@ -43,5 +43,3 @@ extension RFC_4007.IPv6.ScopedAddress {
 
     public static var coder: Coder<ArraySlice<Byte>, [Byte]> { .init() }
 }
-
-extension RFC_4007.IPv6.ScopedAddress: Coder.Codable {}

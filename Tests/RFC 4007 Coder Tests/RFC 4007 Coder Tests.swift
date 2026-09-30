@@ -75,7 +75,9 @@ extension `RFC 4007 Coder Tests`.`Coder Tests` {
             address: RFC_4291.IPv6.Address(0xfe80, 0, 0, 0x0200, 0x5eff, 0xfe00, 0x0001, 0),
             zone: "eth1"
         )
-        var encoded: ArraySlice<Byte> = try scoped.encoded()[...]
+        var bytes: [Byte] = []
+        try RFC_4007.IPv6.ScopedAddress.coder.serialize(scoped, into: &bytes)
+        var encoded = bytes[...]
         #expect(encoded == "fe80::200:5eff:fe00:1:0%eth1")
         #expect(try RFC_4007.IPv6.ScopedAddress.coder.parse(&encoded) == scoped)
         #expect(encoded.isEmpty)
