@@ -1,7 +1,6 @@
 public import ASCII
 public import Binary
 public import Byte
-import Byte
 public import RFC_4007
 import RFC_4291
 import RFC_4291_Coder
@@ -10,7 +9,7 @@ import RFC_5952_Coder
 
 extension RFC_4007.IPv6.ScopedAddress: @retroactive ASCII.Parseable {
 
-    public init<Bytes: Swift.Collection>(ascii bytes: Bytes) throws(Error)
+    public init<Bytes: Swift::Collection>(ascii bytes: Bytes) throws(Error)
     where Bytes.Element == Byte {
         guard !bytes.isEmpty else { throw Error.empty }
 

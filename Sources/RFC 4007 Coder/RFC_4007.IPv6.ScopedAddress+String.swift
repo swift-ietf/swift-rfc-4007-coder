@@ -20,7 +20,7 @@ extension RFC_4007.IPv6.ScopedAddress: @retroactive LosslessStringConvertible {
     }
 }
 
-extension RFC_4007.IPv6.ScopedAddress: @retroactive Swift.RawRepresentable {
+extension RFC_4007.IPv6.ScopedAddress: @retroactive Swift::RawRepresentable {
 
     public var rawValue: String { description }
 

@@ -41,9 +41,7 @@ let package = Package(
             dependencies: [
                 .product(name: "ASCII", package: "swift-ascii"),
                 .product(name: "Byte", package: "swift-byte"),
-                .product(name: "Byte", package: "swift-byte"),
                 .product(name: "Coder", package: "swift-coder"),
-                .product(name: "Cursor", package: "swift-cursor"),
                 .product(name: "Cursor", package: "swift-cursor"),
                 .product(name: "Parser", package: "swift-parser"),
                 .product(name: "RFC 4007", package: "swift-rfc-4007"),
@@ -58,11 +56,9 @@ let package = Package(
         .testTarget(
             name: "RFC 4007 Coder Tests",
             dependencies: [
-                "RFC 4007 Coder",
+                .target(name: "RFC 4007 Coder"),
                 .product(name: "ASCII", package: "swift-ascii"),
                 .product(name: "Byte", package: "swift-byte"),
-                .product(name: "Byte", package: "swift-byte"),
-                .product(name: "Coder", package: "swift-coder"),
                 .product(name: "Coder", package: "swift-coder"),
                 .product(name: "Cursor", package: "swift-cursor"),
                 .product(name: "Parser", package: "swift-parser"),
@@ -77,7 +73,7 @@ let package = Package(
         .target(
             name: "RFC 4007 Coder Foundation Integration",
             dependencies: [
-                "RFC 4007 Coder",
+                .target(name: "RFC 4007 Coder"),
                 .product(name: "ASCII", package: "swift-ascii"),
                 .product(name: "Byte", package: "swift-byte"),
                 .product(name: "RFC 4007", package: "swift-rfc-4007"),
@@ -90,7 +86,7 @@ let package = Package(
         .testTarget(
             name: "RFC 4007 Coder Foundation Integration Tests",
             dependencies: [
-                "RFC 4007 Coder Foundation Integration",
+                .target(name: "RFC 4007 Coder Foundation Integration"),
                 .product(name: "RFC 4007", package: "swift-rfc-4007"),
                 .product(name: "RFC 4291", package: "swift-rfc-4291"),
             ]
@@ -100,16 +96,14 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+    target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
         .enableExperimentalFeature("Lifetimes"),
+        .treatAllWarnings(as: .error),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
