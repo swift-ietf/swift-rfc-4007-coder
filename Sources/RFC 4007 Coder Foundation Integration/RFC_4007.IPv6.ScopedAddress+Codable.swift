@@ -1,7 +1,6 @@
-public import RFC_4007
-
 import ASCII
 import Byte
+public import RFC_4007
 import RFC_4291
 import RFC_4291_Coder
 import RFC_5952_Coder

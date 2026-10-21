@@ -1,15 +1,14 @@
+import ASCII
 public import Byte
 public import Coder
 public import Cursor
-public import RFC_4007
-import ASCII
 import Parser
+public import RFC_4007
 import Serializer
 
 extension RFC_4007.IPv6.ScopedAddress {
 
     public struct Coder<Input: Cursor.`Protocol`<Byte, Never>, Buffer: RangeReplaceableCollection<Byte>>: Coding {
-
 
         public typealias Output = RFC_4007.IPv6.ScopedAddress
 
